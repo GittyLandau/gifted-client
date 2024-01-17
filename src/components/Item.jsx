@@ -3,12 +3,15 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 const Item = ({ item, location }) => {
+  // url
+  const API_BASE_URL =
+    import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(Number(item.cart));
 
   // remove item from cart
   const removeItem = async () => {
-    const result = await axios.delete(`http://localhost:3001/cart/${item.id}`);
+    const result = await axios.delete(`${API_BASE_URL}/cart/${item.id}`);
   };
 
   // submit handler
@@ -22,7 +25,7 @@ const Item = ({ item, location }) => {
       return;
     }
     try {
-      const result = await axios.post('http://localhost:3001/api/cart', {
+      const result = await axios.post(`${API_BASE_URL}/api/cart`, {
         id: item.id,
         quantity: Number(e.target.value ? e.target.value : quantity),
       });

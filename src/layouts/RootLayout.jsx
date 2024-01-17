@@ -5,9 +5,13 @@ import Nav from '../components/Nav';
 // library imports
 import axios from 'axios';
 
+// url
+const API_BASE_URL =
+  import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
 // loader
 export const rootLayoutLoader = async () => {
-  const data = await axios.get('http://localhost:3001/api/items');
+  const data = await axios.get(`${API_BASE_URL}/api/items`);
   return { items: data.data.items };
 };
 

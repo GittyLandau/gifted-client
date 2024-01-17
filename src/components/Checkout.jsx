@@ -6,13 +6,16 @@ import axios from 'axios';
 
 // delete cart
 const deleteCart = async () => {
-  const result = await axios.delete('http://localhost:3001/cart');
+  const result = await axios.delete(`${API_BASE_URL}/cart`);
 };
 const Checkout = ({ cart }) => {
+  // url
+  const API_BASE_URL =
+    import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     try {
-      const result = await axios.post('http://localhost:3001/send-email', {
+      const result = await axios.post(`${API_BASE_URL}/send-email`, {
         subject: 'Order placed',
         text: formatText(),
       });

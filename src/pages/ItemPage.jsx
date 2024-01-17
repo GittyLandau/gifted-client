@@ -11,9 +11,13 @@ import { useRef } from 'react';
 import axios from 'axios';
 import Item from '../components/Item';
 
+// url
+const API_BASE_URL =
+  import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
 export const ItemPageLoader = async ({ params }) => {
   const { id } = params;
-  const data = await axios.get(`http://localhost:3001/api/item/${id}`);
+  const data = await axios.get(`${API_BASE_URL}/api/item/${id}`);
   return { item: data.data };
 };
 const ItemPage = () => {
