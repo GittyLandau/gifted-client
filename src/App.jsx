@@ -14,11 +14,17 @@ import Dashboard from './pages/Dashboard';
 import ItemPage, { ItemPageLoader } from './pages/ItemPage';
 import Cart from './pages/Cart';
 import OrderConfirmation from './pages/OrderConfirmation';
+import NotFound from './pages/NotFound';
 import ErrorPage from './pages/ErrorPage';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path='/' element={<RootLayout />} loader={rootLayoutLoader}>
+      <Route
+        path='/'
+        element={<RootLayout />}
+        loader={rootLayoutLoader}
+        errorElement={<ErrorPage />}
+      >
         <Route path='/' element={<Dashboard />} loader={rootLayoutLoader} />
         <Route
           path='/item/:id'
@@ -27,7 +33,7 @@ const router = createBrowserRouter(
         />
         <Route path='/cart' element={<Cart />} loader={rootLayoutLoader} />
         <Route path='/order-confirmation' element={<OrderConfirmation />} />
-        <Route path='*' element={<ErrorPage />} />
+        <Route path='*' element={<NotFound />} />
       </Route>
     </Route>
   )

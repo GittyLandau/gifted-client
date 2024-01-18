@@ -11,6 +11,7 @@ const API_BASE_URL =
 
 // loader
 export const rootLayoutLoader = async () => {
+  console.log(`${API_BASE_URL}/api/items`);
   const data = await axios.get(`${API_BASE_URL}/api/items`);
   return { items: data.data.items };
 };
