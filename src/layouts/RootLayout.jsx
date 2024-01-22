@@ -5,14 +5,12 @@ import Nav from '../components/Nav';
 // library imports
 import axios from 'axios';
 
-// url
-const API_BASE_URL =
-  import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
-
+// URL
+const URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 // loader
 export const rootLayoutLoader = async () => {
-  console.log(`${API_BASE_URL}/api/items`);
-  const data = await axios.get(`${API_BASE_URL}/api/items`);
+  console.log(import.meta.env);
+  const data = await axios.get(`${URL}/api/items`);
   return { items: data.data.items };
 };
 

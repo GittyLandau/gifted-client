@@ -1,15 +1,17 @@
 // rrd imports
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useRouteError } from 'react-router-dom';
 
 // library imports
 import { IoIosArrowRoundBack } from 'react-icons/io';
 
 const ErrorPage = () => {
+  const error = useRouteError();
   const navigate = useNavigate();
+  console.log(error);
   return (
     <div className='text-center'>
       <h1 className='text-6xl my-10'>OOPS!</h1>
-      <div className='text-xl my-10'>Page not found</div>
+      <div className='text-xl my-10'>{}</div>
       <button
         className='btn btn-primary'
         onClick={() => {

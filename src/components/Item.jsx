@@ -4,14 +4,14 @@ import { useState } from 'react';
 import axios from 'axios';
 const Item = ({ item, location }) => {
   // url
-  const API_BASE_URL =
-    import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+  const URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(Number(item.cart));
 
   // remove item from cart
   const removeItem = async () => {
-    const result = await axios.delete(`${API_BASE_URL}/cart/${item.id}`);
+    const result = await axios.delete(`${URL}/cart/${item.id}`);
   };
 
   // submit handler
@@ -25,7 +25,7 @@ const Item = ({ item, location }) => {
       return;
     }
     try {
-      const result = await axios.post(`${API_BASE_URL}/api/cart`, {
+      const result = await axios.post(`${URL}/api/cart`, {
         id: item.id,
         quantity: Number(e.target.value ? e.target.value : quantity),
       });
@@ -107,7 +107,9 @@ const Item = ({ item, location }) => {
             </div>
           )}
         </form>
-        {location === 'cart' && <div className='text-info'>${item.price}</div>}
+        {location === 'cart' && (
+          <div className='text-info'>${item.price * item.cart}</div>
+        )}
       </div>
     </div>
   );

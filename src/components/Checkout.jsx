@@ -5,17 +5,17 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // delete cart
+
+// url
+const URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 const deleteCart = async () => {
-  const result = await axios.delete(`${API_BASE_URL}/cart`);
+  const result = await axios.delete(`${URL}/cart`);
 };
 const Checkout = ({ cart }) => {
-  // url
-  const API_BASE_URL =
-    import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     try {
-      const result = await axios.post(`${API_BASE_URL}/send-email`, {
+      const result = await axios.post(`${URL}/send-email`, {
         subject: 'Order placed',
         text: formatText(),
       });
@@ -47,7 +47,10 @@ const Checkout = ({ cart }) => {
       <div className='flex justify-between'>
         <span>Subtotal</span>
         <span>
-          ${cart.reduce((acc, item) => Number(item.price) + acc, 0).toFixed(2)}
+          $
+          {cart
+            .reduce((acc, item) => Number(item.price * item.cart) + acc, 0)
+            .toFixed(2)}
         </span>
       </div>
       <div className='flex justify-between'>
@@ -62,7 +65,10 @@ const Checkout = ({ cart }) => {
       <div className='flex justify-between'>
         <span className='font-bold'>ORDER TOTAL</span>
         <span className='text-info'>
-          ${cart.reduce((acc, item) => Number(item.price) + acc, 0).toFixed(2)}
+          $
+          {cart
+            .reduce((acc, item) => Number(item.price * item.cart) + acc, 0)
+            .toFixed(2)}
         </span>
       </div>
       <button
