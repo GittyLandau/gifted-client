@@ -48,12 +48,12 @@ const Item = ({ item, location }) => {
     }
   };
   return (
-    <div className='flex space-x-10'>
+    <div className='flex space-x-10 text-[#6f7564]'>
       {/* left side of flex--img */}
       <img
         src={item.img}
         alt={item.title}
-        className={`w-1/3 border-6 rounded-xl border-black ${
+        className={`w-1/3 border-4 rounded-xl border-[#D76161] shadow-xl ${
           location === 'cart' && 'h-64 w-64'
         }`}
       />
@@ -88,7 +88,7 @@ const Item = ({ item, location }) => {
               value={quantity}
               name='quantity'
               id='quantity'
-              className='select select-bordered w-fit max-w-xs focus:outline-none'
+              className='select w-fit max-w-xs bg-inherit border-2 border-[#959a8b]'
             >
               <option>Select</option>
               <option value='1'>1</option>
@@ -101,14 +101,17 @@ const Item = ({ item, location }) => {
           </label>
           {location === 'itemPage' && (
             <div className='mt-9'>
-              <button type='submit' className='btn btn-primary'>
+              <button
+                type='submit'
+                className='btn hover:bg-[#6f7564] hover:text-[#959a8b] text-[#c7cac1] bg-[#959a8b] shadow-xl border-none'
+              >
                 Add to Cart
               </button>
             </div>
           )}
         </form>
         {location === 'cart' && (
-          <div className='text-info'>${item.price * item.cart}</div>
+          <div className='text-[#436F70]'>${item.price * item.cart}</div>
         )}
       </div>
     </div>

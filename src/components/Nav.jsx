@@ -7,23 +7,23 @@ const Nav = () => {
     return Number(item.cart) > 0 && item;
   });
   return (
-    <div className='navbar bg-base-100'>
-      <div className='flex-1'>
-        <NavLink to={'/'} className='ml-6 mt-10 flex items-center'>
-          <img src='/favicon.svg' alt='gifted logo' className='w-14 h-14' />
-          <span className='btn btn-ghost hover:bg-inherit text-5xl font-normal'>
+    <div className='navbar flex justify-between p-10 text-[#6f7564]'>
+      <div className=''>
+        <NavLink to={'/'} className='flex items-center ml-10'>
+          <img src='/favicon.svg' alt='gifted logo' className='w-8 h-8' />
+          <span className=' btn btn-ghost hover:bg-inherit text-2xl font-normal'>
             Gifted
           </span>
         </NavLink>
       </div>
 
-      <div className='flex-none'>
+      <div className=''>
         <div className='dropdown dropdown-end'>
           <div tabIndex={0} role='button' className='btn btn-ghost btn-circle'>
             <div className='indicator duration-1000'>
               <IoCartOutline className='w-6 h-8' />
               {cart.length > 0 && (
-                <span className='badge badge-primary badge-sm indicator-item'>
+                <span className='badge badge-md indicator-item bg-[#EC7063] border-none text-white text-xs'>
                   {cart.reduce((acc, item) => acc + Number(item.cart), 0)}
                 </span>
               )}
@@ -33,7 +33,7 @@ const Nav = () => {
           {cart && (
             <div
               tabIndex={0}
-              className='mt-3 z-[1] card card-compact dropdown-content w-64 bg-base-100 shadow'
+              className='mt-3 z-[1] bg-[#aeb2a6] card card-compact dropdown-content w-64 bg-inherit shadow'
             >
               <div className='card-body'>
                 <span className='font-bold text-lg'>
@@ -54,7 +54,9 @@ const Nav = () => {
                             {item.title.length > 10 && '...'}
                           </div>
                           <div>
-                            <span className='text-info'>${item.price}</span>
+                            <span className='text-[#436F70]'>
+                              ${item.price}
+                            </span>
                             <span className='opacity-50 text-xs'>
                               {' '}
                               quantity: {item.cart}
@@ -66,15 +68,15 @@ const Nav = () => {
                   })}
                 </ul>
 
-                <span className='text-info'>
+                <span className='text-[#EC7063]'>
                   Subtotal: $
                   {cart
                     .reduce((acc, item) => acc + Number(item.price), 0)
                     .toFixed(2)}
                 </span>
                 <div className='card-actions'>
-                  <NavLink to='/cart'>
-                    <button className='btn btn-primary btn-block'>
+                  <NavLink to='/cart' className='w-full'>
+                    <button className='btn hover:bg-[#6f7564] hover:text-[#959a8b] text-[#c7cac1] bg-[#959a8b] shadow-xl border-none w-full'>
                       View cart
                     </button>
                   </NavLink>
